@@ -1,3 +1,9 @@
+# ============================================================
+# Quantitative Research Dependencies
+# Target: CCXT 4.5.29 + Toobit support
+# Docker + pip check + deterministic build
+# ============================================================
+
 # Core ML/Data Stack
 ccxt==4.5.29
 numpy==1.26.3
@@ -14,7 +20,7 @@ certifi==2024.2.2
 charset-normalizer==3.3.2
 idna==3.6
 
-# CCXT async stack (MUST align)
+# CCXT async stack (PINNED for deterministic build)
 aiohttp==3.9.3
 yarl==1.9.4
 multidict==6.0.5
@@ -29,7 +35,7 @@ pytz==2023.3.post1
 tzdata==2023.4
 six==1.16.0
 
-# Crypto
+# Crypto (OpenSSL 3.x compatible)
 cryptography==42.0.5
 cffi==1.16.0
 pycparser==2.21
