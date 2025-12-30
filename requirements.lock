@@ -1,0 +1,36 @@
+# Core ML/Data
+ccxt==4.2.25
+numpy==1.26.3
+pandas==2.1.4
+scipy==1.11.4
+pyarrow==14.0.2
+lightgbm==4.1.0
+
+# Async / HTTP (CCXT)
+aiohttp==3.9.1
+yarl==1.9.4
+multidict==6.0.4
+async-timeout==4.0.3
+aiosignal==1.3.1
+frozenlist==1.4.1
+attrs==23.2.0
+
+# Requests stack
+requests==2.31.0
+urllib3==1.26.18
+idna==3.6
+charset-normalizer==3.3.2
+
+# Date / time
+python-dateutil==2.8.2
+pytz==2023.3.post1
+tzdata==2023.4
+six==1.16.0
+
+# Crypto / TLS
+cryptography==41.0.8
+cffi==1.16.0
+pycparser==2.21
+
+# Utils
+packaging==23.2

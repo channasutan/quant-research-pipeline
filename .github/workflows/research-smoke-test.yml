@@ -1,0 +1,35 @@
+name: Research Pipeline Smoke Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  research-smoke-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Build Docker image
+      run: |
+        docker build -f Dockerfile.research -t crypto-research:test .
+        
+    - name: Run research pipeline smoke test
+      run: |
+        docker run --rm -v ${{ github.workspace }}:/app crypto-research:test \
+          python test_with_cached_data.py
+          
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: research-artifacts
+        path: |
+          artifacts/
+          research/raw/
+        retention-days: 7

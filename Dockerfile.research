@@ -1,0 +1,56 @@
+# ============================================================
+# Quantitative Research Docker Environment
+# Optimized for: Reproducibility, Stability, CCXT Compatibility
+# ============================================================
+
+FROM python:3.11.7-slim
+
+# ----------------------------
+# System dependencies (stable versions)
+# ----------------------------
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl \
+    build-essential \
+ && update-ca-certificates \
+ && rm -rf /var/lib/apt/lists/* \
+ && apt-get clean
+
+# ----------------------------
+# Research environment variables
+# ----------------------------
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app \
+    PYTHONDONTWRITEBYTECODE=1 \
+    TZ=UTC
+
+# ----------------------------
+# Working directory
+# ----------------------------
+WORKDIR /app
+
+# ----------------------------
+# Install dependencies (no network calls)
+# ----------------------------
+COPY requirements.research .
+RUN pip install --upgrade pip==23.3.2 \
+ && pip install --no-cache-dir -r requirements.research \
+ && pip check
+
+# ----------------------------
+# Remove build dependencies (reduce attack surface)
+# ----------------------------
+RUN apt-get remove -y build-essential \
+ && apt-get autoremove -y \
+ && apt-get clean
+
+# ----------------------------
+# SSL environment verification (offline)
+# ----------------------------
+RUN python -c "import ssl; print('✅ OpenSSL:', ssl.OPENSSL_VERSION); assert 'OpenSSL 3.' in ssl.OPENSSL_VERSION"
+
+# ----------------------------
+# Default command
+# ----------------------------
+CMD ["python", "-c", "print('🐳 Quant Research Environment Ready')"]

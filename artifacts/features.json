@@ -1,0 +1,35 @@
+{
+  "feature_names": [
+    "ret_1",
+    "ret_3",
+    "ret_6",
+    "ret_12",
+    "ema_12",
+    "ema_24",
+    "ema_48",
+    "close_ema_12_ratio",
+    "close_ema_24_ratio",
+    "close_ema_48_ratio",
+    "rv_24",
+    "rv_72",
+    "log_volume",
+    "adv_30"
+  ],
+  "num_features": 14,
+  "feature_types": {
+    "ret_1": "float",
+    "ret_3": "float",
+    "ret_6": "float",
+    "ret_12": "float",
+    "ema_12": "float",
+    "ema_24": "float",
+    "ema_48": "float",
+    "close_ema_12_ratio": "float",
+    "close_ema_24_ratio": "float",
+    "close_ema_48_ratio": "float",
+    "rv_24": "float",
+    "rv_72": "float",
+    "log_volume": "float",
+    "adv_30": "float"
+  }
+}
